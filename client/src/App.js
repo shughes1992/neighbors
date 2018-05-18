@@ -1,65 +1,27 @@
 import React, { Component } from 'react';
 // import '../public/stylesheets/style.css'
-import background from './components/assets/images/neighbors-2.jpg'; 
-import './App.css';
-
-const title={
-  fontSize: "30px",
-  textAlign: "center"
-}
+import background from './components/assets/images/neighbors-2.jpg';
+import NavBar from './components/Navigation/Navigation'
+import classes from './App.css';
 
 class App extends Component {
-
-  constructor () {
-    super() 
-    this.state = {
-      name: "Neigbors", 
-      authenticated: false
-    }
+  state = {
+    name: "Neigbors",
+    authenticated: false
   }
-
-login(){
-  this.setState({
-    authenticated: true
-  })
-}
+  login = (event) => {
+    console.log(event.target.id)
+    this.setState({
+      authenticated: true
+    })
+  }
 
   render() {
     return (
-      <div className="App">
-
-        <header className="App-header">
-        <h1 style={title}>{this.state.name}</h1>
-
-        {this.state.authenticated&&
-        <img src={background} className="App-background" alt="neigborhood" style={{height: 700, opacity: 0.5}}/>
-      }
-
-        {!this.state.authenticated&&
-          <div>
-              <h2> Username: </h2>
-              <input /> 
-              <h2> Password: </h2>
-              <input /> 
-              <br />
-              <br />
-
-              <button onClick={()=>this.login()}> 
-                Login
-              </button>
-              <button> 
-                Sign Up
-              </button>
-          </div>
-        }
-
-        
-        </header>
-
-    
+      <div>
+        <NavBar name1="neighbors" name2="neighborhood" clicked={this.login}/>
+        <NavBar name1='sam' name2='mike' clicked={this.login}/>
       </div>
-
-
     );
   }
 }
