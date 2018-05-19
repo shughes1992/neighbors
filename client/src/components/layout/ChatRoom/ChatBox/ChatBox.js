@@ -11,14 +11,7 @@ class ChatBox extends Component {
       chatHistory: this.props.chatHistory
     })
   }
-  // componentWillReceiveProps() {
-  //   console.log("receiving props")
-  //   console.log(this.props.chatHistory)
-  //   this.setState({
-  //     chatHistory: this.props.chatHistory
-  //   })
-  // }
-
+  
   updateMessage = (event) => {
     let updatedMessage = event.target.value;
     this.setState({
