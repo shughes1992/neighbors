@@ -4,11 +4,11 @@
 // because we're not hardcoding any of the routes this api route can be used to
 // fetch our neighborhood zones, chat histories, and users by referreing to those controllers
 // Additionaly, this route file can be resued in any other project
-var express = require('express')
-var router = express.Router()
-var controllers = require('../controllers')
+const express = require('express')
+const router = express.Router()
+const controllers = require('../controllers')
 
-
+// ajax.get("api/message")
 router.get('/:resource', function(req, res, next){
 	var resource = req.params.resource;
 	var controller = controllers[resource]
@@ -28,7 +28,7 @@ router.get('/:resource', function(req, res, next){
 	.catch(function(err){
 		res.json({
 			confirmation: 'fail',
-			message: err
+			errorMessage: err
 		})
 	})
 })
