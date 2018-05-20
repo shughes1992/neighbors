@@ -7,12 +7,14 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
+
 var db = require('./models');
 var app = express();
 var PORT = process.env.PORT || 8080;
 
 // connect to db
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
@@ -32,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api', api)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

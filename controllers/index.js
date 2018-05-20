@@ -1,4 +1,4 @@
-const chat = require('./chatController');
+const message = require('./messageController');
 const user = require('./userController');
 const location = require('./locationController');
 
@@ -10,7 +10,7 @@ const location = require('./locationController');
 //   location: location
 // }
 module.exports = {
-  chat,
+  message,
   user,
   location,
 }
