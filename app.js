@@ -7,8 +7,16 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var db = require('./models');
 var app = express();
+var PORT = process.env.PORT || 8080;
+
+// connect to db
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
