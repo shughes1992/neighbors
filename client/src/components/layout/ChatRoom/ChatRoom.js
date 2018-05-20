@@ -6,6 +6,7 @@ import ChatBox from './ChatBox/ChatBox'
 class ChatRoom extends Component {
 
   render() {
+    console.log(this.props.chatHistory)
     return (
       <ChatBox chatHistory={this.props.chatHistory} activeUser={this.props.activeUser} />
     )

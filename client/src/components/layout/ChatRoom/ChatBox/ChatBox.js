@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
 import Button from '../../../UI/Button/Button';
+
 class ChatBox extends Component {
   state = {
-    chatHistory: [],
     message: ''
   }
-  componentWillMount() {
-    this.setState({
-      chatHistory: this.props.chatHistory
-    })
-  }
-  
   updateMessage = (event) => {
     let updatedMessage = event.target.value;
     this.setState({
@@ -30,11 +24,12 @@ class ChatBox extends Component {
   }
 
   render() {
+    console.log(this.props.chatHistory)
     // use the map method to turn each message in the chat history into a jsx element
-    const messages = this.state.chatHistory.map((chatItem, index) => {
+    const messages = this.props.chatHistory.map((chatItem, index) => {
       return (
         <div key={index}>
-          <div>{chatItem.user}: <span>{chatItem.message}</span></div>
+          <div>{chatItem.user}: <span>{chatItem.text}</span></div>
         </div>
       )
     })
