@@ -4,6 +4,7 @@ import NavBar from './components/Navigation/Navigation';
 import ChatRoom from './components/layout/ChatRoom/ChatRoom';
 import classes from './App.css';
 import api from './utils/apiRequests';
+import Map from './components/layout/Map/Map';
 
 class App extends Component {
   state = {
@@ -34,6 +35,7 @@ class App extends Component {
       <div className={classes.App}>
         <NavBar name1="neighbors" name2="neighborhood"/>
         <ChatRoom chatHistory={this.state.chatHistory} activeUser={this.state.activeUser}/>
+        <Map />
       </div>
     );
   }
