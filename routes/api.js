@@ -8,10 +8,10 @@ const express = require('express')
 const router = express.Router()
 const controllers = require('../controllers')
 
-// ajax.get("api/message")
+// axios.get('/api/message')
 router.get('/:resource', function(req, res, next){
 	var resource = req.params.resource;
-	var controller = controllers[resource]
+	var controller = controllers[resource];
 	if (controller == null){
 		res.json({
 			confirmation:'fail',

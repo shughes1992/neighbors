@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
 import Button from '../../../UI/Button/Button';
+import api from '../../../../utils/apiRequests';
 
 class ChatBox extends Component {
   state = {
+    chatHistory: [],
     message: ''
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props)
+    this.setState({
+      chatHistory: nextProps.chatHistory
+    })
+  }
+
   updateMessage = (event) => {
     let updatedMessage = event.target.value;
     this.setState({
@@ -15,18 +25,22 @@ class ChatBox extends Component {
 
   submitMessage = () => {
     let updatedChatHistory = [...this.state.chatHistory];
-    let newMessage = {user: this.props.activeUser, message: this.state.message}
+    let newMessage = {user: this.props.activeUser, text: this.state.message}
     updatedChatHistory.push(newMessage)
-    this.setState({
-      message: '',
-      chatHistory: updatedChatHistory
+    // post to db
+    api.postMessage(newMessage)
+    .then(response => {
+      this.setState({
+        message: '',
+        chatHistory: updatedChatHistory
+      })
     })
   }
 
   render() {
-    console.log(this.props.chatHistory)
+    console.log(this.state.chatHistory)
     // use the map method to turn each message in the chat history into a jsx element
-    const messages = this.props.chatHistory.map((chatItem, index) => {
+    const messages = this.state.chatHistory.map((chatItem, index) => {
       return (
         <div key={index}>
           <div>{chatItem.user}: <span>{chatItem.text}</span></div>

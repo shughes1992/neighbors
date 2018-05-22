@@ -14,5 +14,22 @@ module.exports = {
         reject(err)
       });
     })
+  },
+
+  post: (message) => {
+    let newMessage = message.message;
+    newMessage.UserId = 1;
+    return new Promise((resolve, reject) => {
+      db.Message.create(newMessage)
+      .then((message) => {
+        console.log("posted from backend!")
+        resolve(message)
+      })
+      .catch((err) => {
+        console.log("ERROR")
+        console.log(err)
+        reject(err)
+      })
+    })
   }
 }
