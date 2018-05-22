@@ -5,6 +5,8 @@ import ChatRoom from './components/layout/ChatRoom/ChatRoom';
 import classes from './App.css';
 import api from './utils/apiRequests';
 import Map from './components/layout/Map/Map';
+import Login from './components/layout/Login/Login';
+// import SimpleMap from './components/layout/Map/Map';
 
 class App extends Component {
   state = {
@@ -33,9 +35,12 @@ class App extends Component {
   render() {
     return (
       <div className={classes.App}>
+        <Login />
         <NavBar name1="neighbors" name2="neighborhood"/>
         <ChatRoom chatHistory={this.state.chatHistory} activeUser={this.state.activeUser}/>
         <Map />
+        {/* <SimpleMap /> */}
+
       </div>
     );
   }

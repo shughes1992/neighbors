@@ -2,12 +2,14 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  align-items: center;
   height: 600px;
-  width: 300px;
+  width: 400px;
   border: 1px solid green;
 }
 
 .Window {
+  align-items: center;
   flex-grow: 2;
   display: flex;
   flex-flow: column;
