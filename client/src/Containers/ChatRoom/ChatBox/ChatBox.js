@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
-import Button from '../../../UI/Button/Button';
-import api from '../../../../utils/apiRequests';
+import Button from '../../../components/UI/Button/Button';
+import api from '../../../utils/apiRequests';
 
 class ChatBox extends Component {
   state = {
