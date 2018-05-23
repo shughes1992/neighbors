@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
-import Navigation from '../../components/Navigation/Navigation';
+import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom';
@@ -55,7 +55,7 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        <Navigation />
+        <NavBar />
         <main>
           <Route path="/" exact render={() => <Login getGeoCoords={this.getGeoCoords}/>}/>
           <Route path="/chatRoom" exact render = {() => (

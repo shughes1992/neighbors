@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './ChatRoom.css';
 import ChatBox from './ChatBox/ChatBox';
-import Map from '../../components/Map/Map'
+import MapContainer from '../../Components/Map/Map'
 
 // <div className{classes.SomeClassName}>
 
@@ -12,7 +12,7 @@ class ChatRoom extends Component {
     return (
       <div>
         <ChatBox chatHistory={this.props.chatHistory}  />
-        <Map lat={this.props.lat} lng={this.props.lng} />
+        <MapContainer lat={this.props.lat} lng={this.props.lng} />
       </div>
     )
   }
