@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
-import Button from '../../../components/UI/Button/Button';
+import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
 
 class ChatBox extends Component {

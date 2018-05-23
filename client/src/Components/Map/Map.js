@@ -9,35 +9,31 @@ const style = {
   }
 
 export class MapContainer extends React.Component  {
-
-  
-
   render() {
     return (
       <div style={{ height: '30vh', width: '100%' }}>
-      <Map
-         google={this.props.google}
-         style={style}
-         initialCenter=
+        <Map
+          google={this.props.google}
+          style={style}
+          initialCenter=
           {{
             lat: this.props.lat,
             lng: this.props.lng
           }}
-            zoom={9}
+          zoom={15}
           onClick={this.onMapClicked}>
-            
+
           <Marker onClick={this.onMarkerClick}
             name={'Current location'} />
-        
+
       </Map>
 
-      
+
       </div>
     );
   }
 }
- 
+
 export default GoogleApiWrapper({
   apiKey: ('AIzaSyBXYH0-ocvoZnzu1HrgZaBJQ1apvBclUt0')
 })(MapContainer)
-
