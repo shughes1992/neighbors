@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './ChatRoom.css';
 import ChatBox from './ChatBox/ChatBox';
-import Map from '../../Components/Map/Map'
+import Map from '../../components/Map/Map'
 
 // <div className{classes.SomeClassName}>
 

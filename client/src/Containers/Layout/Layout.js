@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
-import Navigation from '../../Components/Navigation/Navigation';
+import Navigation from '../../components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom';
