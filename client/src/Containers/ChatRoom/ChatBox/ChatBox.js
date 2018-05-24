@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
-import Button from '../../../components/UI/Button/Button';
+import Login from '../../Login/Login'
+import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
 
 class ChatBox extends Component {
   state = {
     chatHistory: [],
-    message: ''
+    message: '',
+    activeUser: Login.activeUser
   }
 
   componentWillReceiveProps(nextProps) {

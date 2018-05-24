@@ -1,0 +1,17 @@
+.LoginForm {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+    width: 400px;
+    border: 1px solid green;
+  }
+
+  .Username {
+    flex-grow: 1;
+  }
+
+  .Password {
+    flex-grow: 1;
+  }
