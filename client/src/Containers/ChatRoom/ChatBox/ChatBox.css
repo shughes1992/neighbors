@@ -1,11 +1,11 @@
 .ChatBox {
+  margin-top: 20px;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
   height: 600px;
-  width: 400px;
-  border: 1px solid green;
+  width: 100vh;
 }
 
 .Window {
@@ -13,16 +13,17 @@
   flex-grow: 2;
   display: flex;
   flex-flow: column;
+  font-size: 20px;
 }
 
 .chatInput {
   flex-grow: 1;
 }
 
-.Left {
+/* .Left {
   align-self: flex-start;
 }
 
 .Right {
   align-self: flex-end;
-}
+} */

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
 import Button from '../../Components/UI/Button/Button';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -30,6 +31,7 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
+    // go to chat room
   }
 
   componentWillMount() {
@@ -49,12 +51,12 @@ class Login extends Component {
  render() {
     return (
       <div className={classes.LoginForm}>
-        <form>
+        <form className={classes.Form}>
           <h3>Log in</h3>
-          <input type="text" id="username" className={classes.Username} value={this.state.username} placeholder="jaqueesedoe@mail.com" onChange={this.handleChange}/>
-          <input type="password" id="password" className={classes.Password} value={this.state.password} placeholder="P@ssw0rd" onChange={this.handleChange}/>
-          <Button clicked={this.handleSubmit}>Log In</Button>
+          <input type="text" id="username" className={classes.InputField} value={this.state.username} placeholder="jaqueesedoe@mail.com" onChange={this.handleChange}/>
+          <input type="password" id="password" className={classes.InputField} value={this.state.password} placeholder="P@ssw0rd" onChange={this.handleChange}/>
         </form>
+        <Link className={classes.Button} to="/chatRoom">Log In</Link>
       </div>
     )
 

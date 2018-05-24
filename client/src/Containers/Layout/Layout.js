@@ -5,6 +5,7 @@ import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom';
+import classes from './layout.css'
 class Layout extends Component {
   state = {
     name: "Neigbors",
@@ -12,7 +13,7 @@ class Layout extends Component {
     chatHistory: [],
     lat: 0,
     lng: 0,
-    activeUser: 'user1'
+    activeUser: 'mike'
   }
 
   componentWillMount(){
@@ -56,12 +57,11 @@ class Layout extends Component {
     return (
       <div>
         <NavBar />
-        <main>
+        <main className={classes.Main}>
           <Route path="/" exact render={() => <Login getGeoCoords={this.getGeoCoords}/>}/>
           <Route path="/chatRoom" exact render = {() => (
-            <ChatRoom chatHistory={this.state.chatHistory} lat={this.state.lat} lng={this.state.lng} />
+            <ChatRoom chatHistory={this.state.chatHistory} lat={this.state.lat} lng={this.state.lng} activeUser={this.state.activeUser} />
           )}/>
-          <Link to="/chatRoom">Go to chatroom</Link>
         </main>
       </div>
     )

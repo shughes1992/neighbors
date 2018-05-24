@@ -11,7 +11,7 @@ const style = {
 export class MapContainer extends React.Component  {
   render() {
     return (
-      <div style={{ height: '30vh', width: '100%' }}>
+      <div style={{ height: '30vh', width: '100vw' }}>
         <Map
           google={this.props.google}
           style={style}

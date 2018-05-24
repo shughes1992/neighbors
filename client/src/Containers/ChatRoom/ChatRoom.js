@@ -11,7 +11,7 @@ class ChatRoom extends Component {
     console.log(this.props.chatHistory)
     return (
       <div>
-        <ChatBox chatHistory={this.props.chatHistory}  />
+        <ChatBox chatHistory={this.props.chatHistory} activeUser={this.props.activeUser} />
         <MapContainer lat={this.props.lat} lng={this.props.lng} />
       </div>
     )

@@ -6,15 +6,16 @@ import api from '../../../utils/apiRequests';
 
 class ChatBox extends Component {
   state = {
-    chatHistory: [],
+    chatHistory: this.props.chatHistory,
     message: '',
-    activeUser: Login.activeUser
+    activeUser: ''
   }
 
   componentWillReceiveProps(nextProps) {
     console.log(this.props)
     this.setState({
-      chatHistory: nextProps.chatHistory
+      chatHistory: nextProps.chatHistory,
+      activeUser: nextProps.activeUser
     })
   }
 
