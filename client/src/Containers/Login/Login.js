@@ -24,11 +24,6 @@ class Login extends Component {
     }
  }
 
- getLocation() {
-
-
- }
-
  render() {
     return (
         <div>Login page</div>
