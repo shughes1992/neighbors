@@ -1,4 +1,4 @@
-import * as actionTypes from './actions'
+import * as actionTypes from '../actions/loginActions'
 
 const initialState = {
   username: '',
@@ -20,9 +20,10 @@ const reducer = (state = initialState, action) => {
       };
 
     case actionTypes.USER_LOGIN:
+      // login authentication
       return {
         ...state,
-        password: action.payload
+        loggedIn: true
       }
     default:
       return state

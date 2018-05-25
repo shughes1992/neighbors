@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
 import Button from '../../Components/UI/Button/Button';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions'
-
-
-
+// import * as actionTypes from '../../store/actions'
+import * as actionCreators from '../../store/actions/loginActions'
 
 class Login extends Component {
  render() {
@@ -32,7 +29,7 @@ class Login extends Component {
             onChange={event => (this.props.handlePasswordChange(event.target.value))}
           />
         </form>
-        <Button clicked={this.login}>Log In</Button>
+        <Button clicked={this.props.login}>Log In</Button>
       </div>
     )
 
@@ -47,8 +44,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    handleUsernameChange: (username) => dispatch({type: actionTypes.UPDATE_USERNAME, username: username}),
-    handlePasswordChange: (password) => dispatch({type: actionTypes.UPDATE_PASSWORD, password: password})
+    handleUsernameChange: (username) => dispatch(actionCreators.updateUsername(username)),
+    handlePasswordChange: (password) => dispatch(actionCreators.updatePassword(password)),
+    login: () => dispatch(actionCreators.userLogin())
   }
 }
 

@@ -15,7 +15,7 @@ class Layout extends Component {
     activeUser: 'mike'
   }
 
-  componentWillMount(){
+  componentWillMount() {
     api.getMessages()
     .then(response => {
       this.setState({
@@ -24,8 +24,14 @@ class Layout extends Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log(this.props.history)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loggedIn) {
+      
+    }
   }
 
   login = (activeUser) => {

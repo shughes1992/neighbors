@@ -3,11 +3,29 @@ import classes from './App.css';
 import Layout from './Containers/Layout/Layout'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Store, { createStore } from 'redux';
-import reducer from './store/reducer';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import loginReducer from './store/reducers/loginReducer';
+import chatReducer from './store/reducers/chatReducer'
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// import SimpleMap from './components/layout/Map/Map';
+const rootReducer = combineReducers({
+    loginReducer,
+    chatReducer,
+});
+
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('[Middleware] Dispatching', action);
+            const result = next(action);
+            console.log('[Middleware] next state', store.getState());
+            return result;
+        }
+    }
+};
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
 
 const App = (props) => (
   <Provider store={store}>
