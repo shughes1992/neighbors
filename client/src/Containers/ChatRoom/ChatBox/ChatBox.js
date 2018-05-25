@@ -46,7 +46,7 @@ class ChatBox extends Component {
     const messages = this.state.chatHistory.map((chatItem, index) => {
       return (
         <div key={index}>
-          <div>{chatItem.user}: <span>{chatItem.text}</span></div>
+          <div className={classes.Message}><span className={classes.Username}>{chatItem.user}:</span> <span>{chatItem.text} </span></div>
         </div>
       )
     })
