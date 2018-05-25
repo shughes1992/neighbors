@@ -28,5 +28,14 @@ export default {
         reject(err)
       })
     })
+  },
+
+  userLogin: (username, password) => {
+    return new Promise((resolve, reject) => {
+      axios.post('/api/login', {
+        username,
+        password,
+      })
+    })
   }
 }
