@@ -3,8 +3,7 @@ import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
 import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
-import { Route } from 'react-router'
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import classes from './layout.css'
 class Layout extends Component {
   state = {
@@ -25,8 +24,13 @@ class Layout extends Component {
     })
   }
 
-  login = (event) => {
-    console.log(event.target.id)
+  componentDidMount(){
+    console.log(this.props.history)
+  }
+
+  login = (activeUser) => {
+    console.log(activeUser)
+    console.log(this.props)
     this.setState({
       authenticated: true
     })
@@ -45,8 +49,6 @@ class Layout extends Component {
 
   getGeoCoords = () => {
     if(navigator.geolocation) {
-
-       // timeout at 60000 milliseconds (60 seconds)
        var options = {timeout:60000};
        navigator.geolocation.getCurrentPosition(this.showLocation, this.errorHandler, options);
     } else {
@@ -58,7 +60,7 @@ class Layout extends Component {
       <div>
         <NavBar />
         <main className={classes.Main}>
-          <Route path="/" exact render={() => <Login getGeoCoords={this.getGeoCoords}/>}/>
+          <Route path="/" exact render={props => <Login history={props.history} getGeoCoords={this.getGeoCoords} login={this.login}/>}/>
           <Route path="/chatRoom" exact render = {() => (
             <ChatRoom chatHistory={this.state.chatHistory} lat={this.state.lat} lng={this.state.lng} activeUser={this.state.activeUser} />
           )}/>

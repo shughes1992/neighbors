@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 class Login extends Component {
 
-
 //Geolocatio prompt below
 
   state = {
@@ -16,22 +15,22 @@ class Login extends Component {
     authenticated: false
   }
 
+  login = () => {
+    // check username and password
+    this.setState({
+      authenticated: true
+    })
+    this.props.history.push('/chatRoom')
+  }
+
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value,
-      activeUser: this.state.username,
-      authenticated: true
+      [event.target.id]: event.target.value
     });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-    // go to chat room
   }
 
   componentWillMount() {
@@ -40,7 +39,6 @@ class Login extends Component {
   }
 
  errorHandler(err) {
-
     if(err.code == 1) {
        alert("Error: Access is denied!");
     } else if( err.code == 2) {
@@ -56,7 +54,7 @@ class Login extends Component {
           <input type="text" id="username" className={classes.InputField} value={this.state.username} placeholder="jaqueesedoe@mail.com" onChange={this.handleChange}/>
           <input type="password" id="password" className={classes.InputField} value={this.state.password} placeholder="P@ssw0rd" onChange={this.handleChange}/>
         </form>
-        <Link className={classes.Button} to="/chatRoom">Log In</Link>
+        <Button clicked={this.login}>Log In</Button>
       </div>
     )
 

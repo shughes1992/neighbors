@@ -8,11 +8,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className={classes.App}>
-          <Layout />
-          {/* <SimpleMap /> */}
-
-        </div>
+        <Layout history={this.props.history}/>
       </BrowserRouter>
     );
   }
