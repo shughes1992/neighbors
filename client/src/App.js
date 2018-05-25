@@ -2,8 +2,9 @@ import React from 'react';
 import classes from './App.css';
 import Layout from './Containers/Layout/Layout'
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 import loginReducer from './store/reducers/loginReducer';
 import chatReducer from './store/reducers/chatReducer'
 
@@ -25,7 +26,7 @@ const logger = store => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 const App = (props) => (
   <Provider store={store}>

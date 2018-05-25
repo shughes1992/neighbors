@@ -20,8 +20,18 @@ export const updatePassword = (password) => {
   }
 }
 
-export const userLogin = () => {
+export const userAuthenticated = (res) => {
   return {
-    type: USER_LOGIN
-  };
+    type: USER_LOGIN,
+    result: res
+  }
+}
+
+export const userLogin = () => {
+  let res = "loggedin!"
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(userAuthenticated(res))
+    }, 2000)
+  }
 };
