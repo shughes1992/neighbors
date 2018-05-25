@@ -1,3 +1,5 @@
+import api from '../../utils/apiRequests'
+
 // ACTION TYPES
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
@@ -29,9 +31,11 @@ export const userAuthenticated = (res) => {
 
 export const userLogin = () => {
   let res = "loggedin!"
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(userAuthenticated(res))
-    }, 2000)
+  return (dispatch, getState) => {
+    const username = getState().loginReducer.username
+    api.getMessages()
+    .then(response => {
+      dispatch(userAuthenticated(response))
+    })
   }
-};
+}

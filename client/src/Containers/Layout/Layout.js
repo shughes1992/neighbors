@@ -30,7 +30,7 @@ class Layout extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      
+
     }
   }
 
@@ -76,4 +76,26 @@ class Layout extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+
+  }
+}
+
+
+// const mapStateToProps = state => {
+//   return {
+//     username: state.username,
+//     password: state.password,
+//   }
+// }
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     handleUsernameChange: (username) => dispatch(actionCreators.updateUsername(username)),
+//     handlePasswordChange: (password) => dispatch(actionCreators.updatePassword(password)),
+//     login: () => dispatch(actionCreators.userLogin())
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(Login);
 export default Layout;

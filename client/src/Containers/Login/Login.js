@@ -32,7 +32,6 @@ class Login extends Component {
         <Button clicked={this.props.login}>Log In</Button>
       </div>
     )
-
   };
 }
 
