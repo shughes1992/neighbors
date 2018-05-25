@@ -3,56 +3,34 @@ import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
 import Button from '../../Components/UI/Button/Button';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions'
+
+
+
 
 class Login extends Component {
-
-//Geolocatio prompt below
-
-  state = {
-    username: "",
-    password: "",
-    activeUser: "",
-    authenticated: false
-  }
-
-  login = () => {
-    // check username and password
-    this.setState({
-      authenticated: true
-    })
-    this.props.history.push('/chatRoom')
-  }
-
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
-  componentWillMount() {
-    console.log("PROPS: ", this.props)
-    this.props.getGeoCoords()
-  }
-
- errorHandler(err) {
-    if(err.code == 1) {
-       alert("Error: Access is denied!");
-    } else if( err.code == 2) {
-       alert("Error: Position is unavailable!");
-    }
- }
-
  render() {
     return (
       <div className={classes.LoginForm}>
         <form className={classes.Form}>
           <h3>Log in</h3>
-          <input type="text" id="username" className={classes.InputField} value={this.state.username} placeholder="jaqueesedoe@mail.com" onChange={this.handleChange}/>
-          <input type="password" id="password" className={classes.InputField} value={this.state.password} placeholder="P@ssw0rd" onChange={this.handleChange}/>
+          <input
+            type="text"
+            id="username"
+            className={classes.InputField}
+            value={this.props.username}
+            placeholder="jaqueesedoe@mail.com"
+            onChange={(event) => (this.props.handleUsernameChange(event.target.value))}
+          />
+          <input
+            type="password"
+            id="password"
+            className={classes.InputField}
+            value={this.props.password}
+            placeholder="P@ssw0rd"
+            onChange={event => (this.props.handlePasswordChange(event.target.value))}
+          />
         </form>
         <Button clicked={this.login}>Log In</Button>
       </div>
@@ -61,5 +39,17 @@ class Login extends Component {
   };
 }
 
+const mapStateToProps = state => {
+  return {
+    username: state.username,
+    password: state.password,
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    handleUsernameChange: (username) => dispatch({type: actionTypes.UPDATE_USERNAME, username: username}),
+    handlePasswordChange: (password) => dispatch({type: actionTypes.UPDATE_PASSWORD, password: password})
+  }
+}
 
-export default Login
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
