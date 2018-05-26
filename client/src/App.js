@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import loginReducer from './store/reducers/loginReducer';
 import chatReducer from './store/reducers/chatReducer';
-require('dotenv').config();
+
 
 const rootReducer = combineReducers({
     loginReducer,

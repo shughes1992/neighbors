@@ -23,19 +23,24 @@ export const updatePassword = (password) => {
   };
 };
 
+// Async action to lookup neighborhood from geoCoords
 export const submitLocation = (lat, lng) => {
-  console.log("ACTIONS: ",lat, lng)
-  googlePlaces.getNeighborhood(lat, lng)
-  .then(result => {
-    console.log("result in action: ", result)
-  })
-  return {
-    type: SUBMIT_LOCATION,
-    lat,
-    lng,
+  return dispatch => {
+    googlePlaces.getNeighborhood(lat, lng)
+    .then(result => {
+      dispatch(foundNeighborhood(result))
+    });
   };
 };
 
+export const foundNeighborhood = (result) => {
+  // parse neighborhood
+  const neighborhood = result[result.length-1].name;
+  return {
+    type: SUBMIT_LOCATION,
+    neighborhood,
+  };
+};
 // Asnyc action to check database for user
 // after this action run userAuthenticated
 export const userLogin = () => {
