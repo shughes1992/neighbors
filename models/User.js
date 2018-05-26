@@ -12,7 +12,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING
-
+    },
+    location: {
+      type: DataTypes.STRING
     }
   });
 

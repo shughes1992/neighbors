@@ -29,7 +29,10 @@ module.exports = {
         // if the user is null create this user
         else if (user === null) {
           console.log("user does not exit")
-          db.User.create({name: params.username, password: params.password})
+          db.User.create({
+            name: params.username,
+            password: params.password,
+            location: params.location})
           .then((user, err) => {
             return resolve({confirmation: "created new user", user: user});
           })

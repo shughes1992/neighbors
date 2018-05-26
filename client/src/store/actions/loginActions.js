@@ -35,6 +35,7 @@ export const submitLocation = (lat, lng) => {
 
 export const foundNeighborhood = (result) => {
   // parse neighborhood
+  // it seems the last result is the most specific
   const neighborhood = result[result.length-1].name;
   return {
     type: SUBMIT_LOCATION,
@@ -47,7 +48,8 @@ export const userLogin = () => {
   return (dispatch, getState) => {
     const username = getState().loginReducer.username;
     const password = getState().loginReducer.password;
-    api.userLogin(username, password)
+    const location = getState().loginReducer.location;
+    api.userLogin(username, password, location)
     .then(response => {
       dispatch(userAuthenticated(response))
     })
