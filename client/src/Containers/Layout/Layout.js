@@ -3,54 +3,21 @@ import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
 import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-import classes from './layout.css'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/loginActions'
+import classes from './layout.css';
 class Layout extends Component {
-  state = {
-    name: "Neigbors",
-    authenticated: false,
-    chatHistory: [],
-    lat: 0,
-    lng: 0,
-    activeUser: 'mike'
-  }
-
-  componentWillMount() {
-    // api.getMessages()
-    // .then(response => {
-    //   this.setState({
-    //     chatHistory: response
-    //   })
-    // })
-  }
-
+  // get the user's location as soon as they go to the homepage
   componentDidMount() {
-    console.log(this.props.history)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-
-    }
-  }
-
-  login = (activeUser) => {
-    console.log(activeUser)
-    console.log(this.props)
-    this.setState({
-      authenticated: true
-    })
+    this.getGeoCoords();
   }
 
   showLocation = (position) => {
-
-    console.log("in show location")
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    this.setState({
-      lat: latitude,
-      lng: longitude
-    })
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    // dispatch action
+    this.props.submitLocation(lat, lng)
   }
 
   getGeoCoords = () => {
@@ -75,27 +42,15 @@ class Layout extends Component {
     )
   }
 }
-
 const mapStateToProps = state => {
   return {
-
+    location: state.location
   }
 }
 
-
-// const mapStateToProps = state => {
-//   return {
-//     username: state.username,
-//     password: state.password,
-//   }
-// }
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     handleUsernameChange: (username) => dispatch(actionCreators.updateUsername(username)),
-//     handlePasswordChange: (password) => dispatch(actionCreators.updatePassword(password)),
-//     login: () => dispatch(actionCreators.userLogin())
-//   }
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
-export default Layout;
+const mapDispatchToProps = dispatch => {
+  return {
+    submitLocation: (lat, lng) => dispatch(actionCreators.submitLocation(lat, lng))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

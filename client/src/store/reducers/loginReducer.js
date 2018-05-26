@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/loginActions'
 const initialState = {
   username: '',
   password: '',
+  location: '',
   loggedIn: false
 }
 

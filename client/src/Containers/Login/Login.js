@@ -18,7 +18,7 @@ class Login extends Component {
             className={classes.InputField}
             value={this.props.username}
             placeholder="jaqueesedoe@mail.com"
-            onChange={(event) => (this.props.handleUsernameChange(event.target.value))}
+            onChange={event => (this.props.handleUsernameChange(event.target.value))}
           />
           <input
             type="password"

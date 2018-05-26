@@ -38,9 +38,11 @@ export default {
       })
       .then(response => {
         console.log(response)
+        resolve(response)
       })
       .catch(err => {
         console.log("error: ", err)
+        reject(err)
       })
     })
   }
