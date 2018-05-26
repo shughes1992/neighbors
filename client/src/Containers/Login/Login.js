@@ -3,11 +3,19 @@ import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
 import Button from '../../Components/UI/Button/Button';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 // import * as actionTypes from '../../store/actions'
 import * as actionCreators from '../../store/actions/loginActions'
 
 class Login extends Component {
- render() {
+  componentDidUpdate(prevProps) {
+    console.log(prevProps)
+    if (this.props.loggedIn){
+      console.log("LOGGED IN!")
+      this.props.history.push('/chatRoom')
+    }
+  }
+  render() {
     return (
       <div className={classes.LoginForm}>
         <form className={classes.Form}>
@@ -37,8 +45,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.username,
-    password: state.password,
+    username: state.loginReducer.username,
+    password: state.loginReducer.password,
+    loggedIn: state.loginReducer.loggedIn,
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -49,4 +58,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

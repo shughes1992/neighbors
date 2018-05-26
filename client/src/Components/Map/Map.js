@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import classes from './Map.css';
 
@@ -8,7 +8,7 @@ const style = {
     height: '40%'
   }
 
-export class MapContainer extends React.Component  {
+export class MapContainer extends Component  {
   render() {
     return (
       <div style={{ height: '30vh', width: '100vw' }}>
@@ -20,7 +20,7 @@ export class MapContainer extends React.Component  {
             lat: this.props.lat,
             lng: this.props.lng
           }}
-          zoom={15}
+          zoom={16}
           onClick={this.onMapClicked}>
 
           <Marker onClick={this.onMarkerClick}
