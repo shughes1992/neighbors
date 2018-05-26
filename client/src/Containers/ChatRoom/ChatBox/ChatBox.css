@@ -4,21 +4,59 @@
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
-  height: 600px;
-  width: 100vh;
+  height: 88vh;
+  width: 100%;
+  z-index: 1000;
 }
 
+
 .Window {
-  flex-grow: 2;
+  background-color: #f9f9f9;
+  position: fixed;
+  top: 150px;
+  left: 40px;
+  width: 350px;
+  height: 60vh;
+  border-radius: 4px;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 20px;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
-.chatInput {
-  flex-grow: 1;
+.WindowHeader {
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: #999;
+  background-color: #f46242;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+}
+
+.ChatControls {
+  height: 135px;
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 30px;
+  left: 50px;
+}
+
+.ChatInput {
+  font-family: 'Raleway', cursive;
+  height: 40px;
+  border-radius: 4px;
+  border: 2px solid #aaa;
+  /* border-style: solid; */
+  padding: 5px;
+  width: 300px;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
 .Username {

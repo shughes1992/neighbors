@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import classes from './ChatRoom.css';
 import ChatBox from './ChatBox/ChatBox';
+import Aux from '../../Components/HOC/Auxil'
 import MapContainer from '../../Components/Map/Map';
 import { connect } from 'react-redux';
 
 
 class ChatRoom extends Component {
-
   render() {
-    console.log(this.props.location)
     return (
-      <div>
-        <ChatBox location={this.props.location}/>
+      <Aux>
         <MapContainer
           location={this.props.location}
           lat={this.props.lat}
           lng={this.props.lng}
         />
-      </div>
+        <ChatBox location={this.props.location} activeUser={this.props.username}/>
+      </Aux>
     )
   }
 }

@@ -1,16 +1,38 @@
 .NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 10vh;
   width: 100%;
   background-color: #f46242;
   font-size: 50px;
   color: white;
-  box-shadow:  0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+  font-family: 'Pacifico', cursive;
+  box-shadow:  0 8px 17px 8px rgba(0,0,0,0.24), 0 3px 14px 10px rgba(0,0,0,0.22), 0 5px 5px -3px rgba(0,0,0,0.32);
 }
 
 .Title {
   text-align: center;
-  height: 100%;
-  line-height: 2;
+  vertical-align: middle;
   letter-spacing: .08em;
-  font-size: 59px;
+  font-size: 1.5em;
+  margin: 0 0 0 30px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* align-self: flex-end; */
+}
+
+.Profile {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-right: 30px;
+}
+.ProfileImage {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+.ProfileName {
+  margin-top: 2px;
+  font-size: .3em;
 }
