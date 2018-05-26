@@ -30,11 +30,21 @@ export default {
     })
   },
 
-  userLogin: (username, password) => {
+  userLogin: (username, password, location) => {
+    console.log("Location in frontend req ", location)
     return new Promise((resolve, reject) => {
-      axios.post('/api/login', {
+      axios.post('/api/user', {
         username,
         password,
+        location,
+      })
+      .then(response => {
+        console.log(response)
+        resolve(response)
+      })
+      .catch(err => {
+        console.log("error: ", err)
+        reject(err)
       })
     })
   }

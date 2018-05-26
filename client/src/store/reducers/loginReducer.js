@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/loginActions'
 const initialState = {
   username: '',
   password: '',
+  location: '',
   loggedIn: false
 }
 
@@ -18,7 +19,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         password: action.password
       };
-
+    case actionTypes.SUBMIT_LOCATION:
+      return {
+        ...state,
+        location: action.neighborhood
+      }
     case actionTypes.USER_LOGIN:
       // login authentication
       return {
