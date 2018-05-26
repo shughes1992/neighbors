@@ -8,6 +8,13 @@ import { withRouter } from 'react-router-dom';
 import * as actionCreators from '../../store/actions/loginActions'
 
 class Login extends Component {
+  componentDidUpdate(prevProps) {
+    console.log(prevProps)
+    if (this.props.loggedIn){
+      console.log("LOGGED IN!")
+      this.props.history.push('/chatRoom')
+    }
+  }
   render() {
     return (
       <div className={classes.LoginForm}>
@@ -38,9 +45,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.username,
-    password: state.password,
-    loggedIn: state.loggedIn,
+    username: state.loginReducer.username,
+    password: state.loginReducer.password,
+    loggedIn: state.loginReducer.loggedIn,
   }
 }
 const mapDispatchToProps = dispatch => {

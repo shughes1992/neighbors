@@ -10,7 +10,6 @@ import classes from './layout.css';
 class Layout extends Component {
   // get the user's location as soon as they go to the homepage
   componentWillMount() {
-    console.log(this.props.history)
     this.getGeoCoords();
   }
 
@@ -41,15 +40,20 @@ class Layout extends Component {
     )
   }
 }
+
+// store
 const mapStateToProps = state => {
   return {
-    location: state.location
+    location: state.loginReducer.location,
+    loggedIn: state.loginReducer.loggedIn
   }
 }
 
+// dispatching actions
 const mapDispatchToProps = dispatch => {
   return {
     submitLocation: (lat, lng) => dispatch(actionCreators.submitLocation(lat, lng))
   }
 }
+
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
