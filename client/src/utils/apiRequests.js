@@ -32,9 +32,15 @@ export default {
 
   userLogin: (username, password) => {
     return new Promise((resolve, reject) => {
-      axios.post('/api/login', {
+      axios.post('/api/user', {
         username,
         password,
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err => {
+        console.log("error: ", err)
       })
     })
   }

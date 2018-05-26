@@ -32,8 +32,9 @@ export const userAuthenticated = (res) => {
 export const userLogin = () => {
   let res = "loggedin!"
   return (dispatch, getState) => {
-    const username = getState().loginReducer.username
-    api.getMessages()
+    const username = getState().loginReducer.username;
+    const password = getState().loginReducer.password;
+    api.userLogin(username, password)
     .then(response => {
       dispatch(userAuthenticated(response))
     })

@@ -16,12 +16,12 @@ class Layout extends Component {
   }
 
   componentWillMount() {
-    api.getMessages()
-    .then(response => {
-      this.setState({
-        chatHistory: response
-      })
-    })
+    // api.getMessages()
+    // .then(response => {
+    //   this.setState({
+    //     chatHistory: response
+    //   })
+    // })
   }
 
   componentDidMount() {
