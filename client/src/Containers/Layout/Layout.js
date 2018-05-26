@@ -29,9 +29,13 @@ class Layout extends Component {
     }
   }
   render() {
+    let username;
+    if (this.props.loggedIn) {
+      username = this.props.username
+    }
     return (
       <div>
-        <NavBar />
+        <NavBar username={username}/>
         <main className={classes.Main}>
           <Route path="/" exact component={Login}/>
           <Route path="/chatRoom" exact component = {ChatRoom} />
@@ -45,6 +49,7 @@ class Layout extends Component {
 const mapStateToProps = state => {
   return {
     location: state.loginReducer.location,
+    username: state.loginReducer.username,
     loggedIn: state.loginReducer.loggedIn
   }
 }

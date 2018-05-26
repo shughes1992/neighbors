@@ -2,10 +2,13 @@ import React from 'react';
 import classes from './navigation.css';
 
 const Navbar = (props) => {
+
   return (
     <div className={classes.NavBar}>
-      <div className="text-danger">{props.name1}</div>
-      <div className={classes.Title}> neighbors
+      <h1 className={classes.Title}> neighbors</h1>
+      <div className={classes.Profile}>
+        <i className={"fas fa-user-circle " + classes.ProfileImage }></i>
+        <div className={classes.ProfileName}>{props.username}</div>
       </div>
     </div>
   )

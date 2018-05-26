@@ -22,6 +22,10 @@ export class MapContainer extends Component  {
           <Marker onClick={this.onMarkerClick}
             name={'Current location'} />
 
+          <Polyline
+            // path={}
+          />
+
         </Map>
     );
   }
