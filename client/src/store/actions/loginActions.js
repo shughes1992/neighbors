@@ -1,5 +1,5 @@
-import api from '../../utils/apiRequests'
-
+import api from '../../utils/apiRequests';
+import googlePlaces from '../../utils/googlePlaces';
 // ACTION TYPES
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
@@ -25,6 +25,10 @@ export const updatePassword = (password) => {
 
 export const submitLocation = (lat, lng) => {
   console.log("ACTIONS: ",lat, lng)
+  googlePlaces.getNeighborhood(lat, lng)
+  .then(result => {
+    console.log("result in action: ", result)
+  })
   return {
     type: SUBMIT_LOCATION,
     lat,
@@ -32,8 +36,9 @@ export const submitLocation = (lat, lng) => {
   };
 };
 
+// Asnyc action to check database for user
+// after this action run userAuthenticated
 export const userLogin = () => {
-  let res = "loggedin!"
   return (dispatch, getState) => {
     const username = getState().loginReducer.username;
     const password = getState().loginReducer.password;
@@ -45,6 +50,7 @@ export const userLogin = () => {
 };
 
 export const userAuthenticated = (result) => {
+  // if result is successful login log the user in
   return {
     type: USER_LOGIN,
     result,

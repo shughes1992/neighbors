@@ -3,13 +3,13 @@ import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
 import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/loginActions'
 import classes from './layout.css';
 class Layout extends Component {
   // get the user's location as soon as they go to the homepage
-  componentDidMount() {
+  componentWillMount() {
     this.getGeoCoords();
   }
 
@@ -17,6 +17,7 @@ class Layout extends Component {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     // dispatch action
+    console.log("dispatching location action")
     this.props.submitLocation(lat, lng)
   }
 
