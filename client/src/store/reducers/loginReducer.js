@@ -4,6 +4,8 @@ const initialState = {
   username: '',
   password: '',
   location: '',
+  lat: '',
+  lng: '',
   loggedIn: false
 }
 
@@ -22,7 +24,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SUBMIT_LOCATION:
       return {
         ...state,
-        location: action.neighborhood
+        location: action.neighborhood,
+        lat: action.lat,
+        lng: action.lng
       }
     case actionTypes.USER_LOGIN:
       // login authentication

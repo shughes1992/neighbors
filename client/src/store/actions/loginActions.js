@@ -28,18 +28,20 @@ export const submitLocation = (lat, lng) => {
   return dispatch => {
     googlePlaces.getNeighborhood(lat, lng)
     .then(result => {
-      dispatch(foundNeighborhood(result))
+      dispatch(foundNeighborhood(result, lat, lng))
     });
   };
 };
 
-export const foundNeighborhood = (result) => {
+export const foundNeighborhood = (result, lat, lng) => {
   // parse neighborhood
   // it seems the last result is the most specific
   const neighborhood = result[result.length-1].name;
   return {
     type: SUBMIT_LOCATION,
     neighborhood,
+    lat,
+    lng,
   };
 };
 // Asnyc action to check database for user

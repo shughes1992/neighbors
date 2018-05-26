@@ -12,15 +12,21 @@ class ChatRoom extends Component {
     return (
       <div>
         <ChatBox location={this.props.location}/>
-        <MapContainer location={this.props.location}/>
+        <MapContainer
+          location={this.props.location}
+          lat={this.props.lat}
+          lng={this.props.lng}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  location: state.location,
-  username: state.username
+  location: state.loginReducer.location,
+  lat: state.loginReducer.lat,
+  lng: state.loginReducer.lng,
+  username: state.loginReducer.username
 });
 
 const mapDispatchToProps = dispatch => {
