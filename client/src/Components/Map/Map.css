@@ -1,0 +1,13 @@
+.MapContainer {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.MapContainer > div {
+  z-index: -1;
+  overflow-x: hidden;
+}

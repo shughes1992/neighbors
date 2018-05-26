@@ -1,35 +1,28 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper, Polyline} from 'google-maps-react';
 import classes from './Map.css';
-
-
-const style = {
-    width: '100%',
-    height: '40%'
-  }
+import mapStyles from './mapStyles.json'
 
 export class MapContainer extends Component  {
   render() {
     return (
-      <div style={{ height: '30vh', width: '100vw' }}>
         <Map
+          id="map"
           google={this.props.google}
-          style={style}
+          className={classes.MapContainer}
           initialCenter=
           {{
             lat: this.props.lat,
             lng: this.props.lng
           }}
-          zoom={16}
+          zoom={15}
+          styles={mapStyles}
           onClick={this.onMapClicked}>
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'} />
 
-      </Map>
-
-
-      </div>
+        </Map>
     );
   }
 }
