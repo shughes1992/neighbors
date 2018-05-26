@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import classes from './ChatRoom.css';
 import ChatBox from './ChatBox/ChatBox';
-import MapContainer from '../../Components/Map/Map'
+import MapContainer from '../../Components/Map/Map';
+import { connect } from 'react-redux';
 
-// <div className{classes.SomeClassName}>
 
 class ChatRoom extends Component {
 
   render() {
-    console.log(this.props.chatHistory)
+    console.log(this.props.location)
     return (
       <div>
-        <ChatBox chatHistory={this.props.chatHistory} activeUser={this.props.activeUser} />
-        <MapContainer lat={this.props.lat} lng={this.props.lng} />
+        <ChatBox location={this.props.location}/>
+        <MapContainer location={this.props.location}/>
       </div>
     )
   }
-
 }
 
-export default ChatRoom;
+const mapStateToProps = (state) => ({
+  location: state.location,
+  username: state.username
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatRoom);

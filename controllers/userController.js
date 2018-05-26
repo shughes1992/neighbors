@@ -32,7 +32,8 @@ module.exports = {
           db.User.create({
             name: params.username,
             password: params.password,
-            location: params.location})
+            location: params.location
+          })
           .then((user, err) => {
             return resolve({confirmation: "created new user", user: user});
           })

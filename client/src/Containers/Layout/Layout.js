@@ -3,13 +3,14 @@ import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
 import NavBar from '../../Components/Navigation/Navigation';
 import api from '../../utils/apiRequests';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/loginActions'
 import classes from './layout.css';
 class Layout extends Component {
   // get the user's location as soon as they go to the homepage
   componentWillMount() {
+    console.log(this.props.history)
     this.getGeoCoords();
   }
 
@@ -17,7 +18,6 @@ class Layout extends Component {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     // dispatch action
-    console.log("dispatching location action")
     this.props.submitLocation(lat, lng)
   }
 
@@ -34,10 +34,8 @@ class Layout extends Component {
       <div>
         <NavBar />
         <main className={classes.Main}>
-          <Route path="/" exact render={props => <Login history={props.history} getGeoCoords={this.getGeoCoords} login={this.login}/>}/>
-          <Route path="/chatRoom" exact render = {() => (
-            <ChatRoom chatHistory={this.state.chatHistory} lat={this.state.lat} lng={this.state.lng} activeUser={this.state.activeUser} />
-          )}/>
+          <Route path="/" exact component={Login}/>
+          <Route path="/chatRoom" exact component = {ChatRoom} />
         </main>
       </div>
     )
@@ -54,4 +52,4 @@ const mapDispatchToProps = dispatch => {
     submitLocation: (lat, lng) => dispatch(actionCreators.submitLocation(lat, lng))
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
