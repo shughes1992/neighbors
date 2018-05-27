@@ -26,7 +26,8 @@ export const updatePassword = (password) => {
 // Async action to lookup neighborhood from geoCoords
 export const submitLocation = (lat, lng) => {
   return dispatch => {
-    googlePlaces.getNeighborhood(lat, lng)
+    // googlePlaces.getNeighborhood for outside of philly -- we'll add cities as we go
+    googlePlaces.getPhillyNeighborhood(lat, lng)
     .then(result => {
       dispatch(foundNeighborhood(result, lat, lng))
     });

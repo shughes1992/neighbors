@@ -1,6 +1,9 @@
 import axios from 'axios';
+// import hoods from 'philly-hoods'; -- not working
 const baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+const phillyBaseUrl = 'http://api.phillyhoods.net/v1/locations/'
 const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
+
 require('dotenv').config();
 export default {
   // this isn't working becuase of cross-origin requests
@@ -27,5 +30,19 @@ export default {
         reject(error)
       });
     });
+  },
+
+  getPhillyNeighborhood: (lat, lng) => {
+    console.log("philly enigbnorhodds")
+    return new Promise((resolve, reject) => {
+      console.log(phillyBaseUrl + lat + "," + lng)
+      axios.get(phillyBaseUrl + lat + "," + lng, {})
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err => {
+        console.log("error: ", err)
+      })
+    })
   }
 };
