@@ -5,7 +5,7 @@ import Button from '../../Components/UI/Button/Button';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 // import * as actionTypes from '../../store/actions'
-import * as actionCreators from '../../store/actions/loginActions'
+import * as actionCreators from '../../store/actions/loginActions';
 
 class Login extends Component {
   componentDidUpdate(prevProps) {

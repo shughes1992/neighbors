@@ -26,8 +26,10 @@ export const updatePassword = (password) => {
 // Async action to lookup neighborhood from geoCoords
 export const submitLocation = (lat, lng) => {
   return dispatch => {
+    // googlePlaces.getNeighborhood for outside of philly -- we'll add cities as we go
     googlePlaces.getNeighborhood(lat, lng)
     .then(result => {
+      console.log(result)
       dispatch(foundNeighborhood(result, lat, lng))
     });
   };
@@ -36,10 +38,9 @@ export const submitLocation = (lat, lng) => {
 export const foundNeighborhood = (result, lat, lng) => {
   // parse neighborhood
   // it seems the last result is the most specific
-  const neighborhood = result[result.length-1].name;
   return {
     type: SUBMIT_LOCATION,
-    neighborhood,
+    neighborhood: result,
     lat,
     lng,
   };
