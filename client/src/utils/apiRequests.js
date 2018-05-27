@@ -15,12 +15,10 @@ export default {
       })
     })
   },
-  postMessage: (message, user, location) => {
+  postMessage: (message) => {
     return new Promise((resolve, reject) => {
       axios.post('/api/message', {
         message,
-        user,
-        location,
       })
       .then((response) => {
         console.log("POSTED!")
@@ -33,13 +31,11 @@ export default {
     })
   },
 
-  userLogin: (username, password, location) => {
-    console.log("Location in frontend req ", location)
+  userLogin: (username, password) => {
     return new Promise((resolve, reject) => {
       axios.post('/api/user', {
         username,
         password,
-        location,
       })
       .then(response => {
         console.log(response)

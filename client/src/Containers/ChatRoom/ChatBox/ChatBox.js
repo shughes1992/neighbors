@@ -34,7 +34,10 @@ class ChatBox extends Component {
   }
 
   submitMessage = () => {
-    let updatedChatHistory = [...this.state.chatHistory];
+    let updatedChatHistory = [];
+    if (this.state.chatHistory) {
+      updatedChatHistory = [...this.state.chatHistory];
+    }
     let newMessage = {user: this.props.activeUser, text: this.state.message, location: this.props.location}
     updatedChatHistory.push(newMessage)
     // post to db

@@ -29,8 +29,11 @@ export const submitLocation = (lat, lng) => {
     // googlePlaces.getNeighborhood for outside of philly -- we'll add cities as we go
     googlePlaces.getNeighborhood(lat, lng)
     .then(result => {
-      console.log(result)
+      console.log("RESULT IN ACTION: ",result)
       dispatch(foundNeighborhood(result, lat, lng))
+    })
+    .catch(err => {
+      console.log(err)
     });
   };
 };

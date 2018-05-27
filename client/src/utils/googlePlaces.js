@@ -18,10 +18,34 @@ export default {
         }
       })
       .then((response) => {
+        // check to see if this location already exists in the database
+        // and if it doesn't create a new entry
         const data = response.data.results;
         const name = data[data.length - 1].name;
-        console.log(name)
-        resolve(name)
+        axios.get('/api/location', {neighborhood: name})
+        .then(response => {
+          console.log("LOCATION RESPONSE: ", response)
+          if (response.data.results) {
+            console.log("NOT POSTING")
+            // this location already exists
+            console.log(response.data.results)
+            return resolve(response.data.results.neighborhood);
+          }
+          else{
+            axios.post('/api/location', {neighborhood: name})
+            .then(response => {
+              console.log("FRONTEND LOCATION response: ", response)
+              console.log(name)
+              resolve(name)
+            })
+            .catch(err => {
+              reject(err)
+            })
+          }
+        })
+        .catch(err => {
+          reject(err);
+        })
       })
       .catch((error) => {
         reject(error)
