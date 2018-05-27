@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var PhillyHood = new mongoose.Schema({
+var Hood = new mongoose.Schema({
   type: {type:String, trim:true, lowercase:true, default:''},
   properties: {
     name: {type: String},
@@ -17,4 +17,4 @@ var PhillyHood = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('PhillyHood', PhillyHood)
+module.exports = mongoose.model('Hood', Hood)

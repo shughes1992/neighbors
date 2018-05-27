@@ -22,7 +22,16 @@ export default {
       .then((response) => {
         console.log('success')
         console.log(response);
-        resolve(response.data.results)
+        const data = response.data.results;
+        const name = data[data.length - 1].name;
+        axios.get('/api/phillyHood', {
+          params: {
+            name,
+          }
+        })
+        .then(response => {
+          console.log("HOODS: ",response.data.results)
+        })
       })
       .catch((error) => {
         console.log("fail")
@@ -32,17 +41,4 @@ export default {
     });
   },
 
-  getPhillyNeighborhood: (lat, lng) => {
-    console.log("philly enigbnorhodds")
-    return new Promise((resolve, reject) => {
-      console.log(phillyBaseUrl + lat + "," + lng)
-      axios.get(phillyBaseUrl + lat + "," + lng, {})
-      .then(response => {
-        console.log(response)
-      })
-      .catch(err => {
-        console.log("error: ", err)
-      })
-    })
-  }
 };

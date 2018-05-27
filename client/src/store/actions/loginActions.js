@@ -27,7 +27,7 @@ export const updatePassword = (password) => {
 export const submitLocation = (lat, lng) => {
   return dispatch => {
     // googlePlaces.getNeighborhood for outside of philly -- we'll add cities as we go
-    googlePlaces.getPhillyNeighborhood(lat, lng)
+    googlePlaces.getNeighborhood(lat, lng)
     .then(result => {
       dispatch(foundNeighborhood(result, lat, lng))
     });
