@@ -17,10 +17,9 @@ module.exports = {
   },
 
   post: (message) => {
-    let newMessage = message.message;
-    newMessage.UserId = 1;
+    console.log(message)
     return new Promise((resolve, reject) => {
-      db.Message.create(newMessage)
+      db.Message.create(message)
       .then((message) => {
         console.log("posted from backend!")
         resolve(message)

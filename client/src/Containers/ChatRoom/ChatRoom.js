@@ -28,7 +28,12 @@ class ChatRoom extends Component {
           lng={this.props.lng}
           hoodCoords={this.state.hoodCoords}
         />
-        <ChatBox location={this.props.location} activeUser={this.props.username}/>
+        <ChatBox
+          location={this.props.location}
+          activeUser={this.props.username}
+          locationId={this.props.locationId}
+          userId={this.props.userId}
+        />
       </Aux>
     )
   }
@@ -36,6 +41,8 @@ class ChatRoom extends Component {
 
 const mapStateToProps = (state) => ({
   location: state.loginReducer.location,
+  locationId: state.loginReducer.locationId,
+  userId: state.loginReducer.userId,
   lat: state.loginReducer.lat,
   lng: state.loginReducer.lng,
   username: state.loginReducer.username

@@ -9,20 +9,13 @@ class ChatBox extends Component {
     message: '',
   }
 
-  componentWillMount() {
+  componentDidMount() {
     api.getMessages(this.props.location)
     .then(chatHistory => {
       console.log("chat history: ", chatHistory)
       this.setState({
         chatHistory,
       })
-    })
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props)
-    this.setState({
-      chatHistory: nextProps.chatHistory,
-      activeUser: nextProps.activeUser
     })
   }
 
@@ -38,7 +31,7 @@ class ChatBox extends Component {
     if (this.state.chatHistory) {
       updatedChatHistory = [...this.state.chatHistory];
     }
-    let newMessage = {user: this.props.activeUser, text: this.state.message, location: this.props.location}
+    let newMessage = {text: this.state.message, UserId: this.props.userId, LocationId: this.props.locationId}
     updatedChatHistory.push(newMessage)
     // post to db
     api.postMessage(newMessage)
@@ -51,11 +44,22 @@ class ChatBox extends Component {
   }
 
   render() {
+    let messages = []
+    if (this.state.chatHistory) {
+      messages = this.state.chatHistory.map(message => {
+        return (
+          <div className={classes.Message}>
+            <span className={classes.Username}>{message.UserId}</span>
+            <span className={classes.MessageText}>{message.text}</span>
+          </div>
+        )
+      })
+    }
     return (
       <div className={classes.ChatBox}>
         <div className={classes.Window}>
           <WindowHeader >{this.props.location} Chat</WindowHeader>
-          {/* {messages} */}
+          {messages}
         </div>
         <div id="chatControls" className={classes.ChatControls}>
           <input className={classes.ChatInput} value={this.state.message} onChange={this.updateMessage}/>

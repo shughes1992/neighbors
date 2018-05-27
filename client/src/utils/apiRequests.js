@@ -15,11 +15,10 @@ export default {
       })
     })
   },
-  postMessage: (message, userId, locationId) => {
+  postMessage: (message) => {
+    console.log(message)
     return new Promise((resolve, reject) => {
-      axios.post('/api/message', {
-        message,
-      })
+      axios.post('/api/message', message)
       .then((response) => {
         console.log("POSTED!")
         console.log(response)
