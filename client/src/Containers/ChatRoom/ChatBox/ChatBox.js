@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
-import Login from '../../Login/Login'
 import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
-import { connect } from 'react-redux';
-import * as actionCreators from '../../../store/actions/chatActions';
-
+import WindowHeader from '../../../Components/UI/WindowHeader/WindowHeader';
 class ChatBox extends Component {
   state = {
     chatHistory: [],
@@ -13,7 +10,7 @@ class ChatBox extends Component {
   }
 
   componentWillMount() {
-    api.getMessages()
+    api.getMessages(this.props.location)
     .then(chatHistory => {
       console.log("chat history: ", chatHistory)
       this.setState({
@@ -54,10 +51,10 @@ class ChatBox extends Component {
     return (
       <div className={classes.ChatBox}>
         <div className={classes.Window}>
-          <div className={classes.WindowHeader}>{this.props.location} Chat</div>
+          <WindowHeader >{this.props.location} Chat</WindowHeader>
           {/* {messages} */}
         </div>
-        <div id="chatControls" class={classes.ChatControls}>
+        <div id="chatControls" className={classes.ChatControls}>
           <input className={classes.ChatInput} value={this.state.message} onChange={this.updateMessage}/>
           <Button clicked={this.submitMessage}>Send</Button>
         </div>

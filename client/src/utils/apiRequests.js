@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 export default {
-  getMessages: () => {
+  getMessages: (location) => {
+    console.log("getting messages for: ", location)
     return new Promise((resolve, reject) => {
-      axios.get('/api/message')
+      axios.get('/api/message', {location,})
       .then((response) => {
-        console.log(response);
+        console.log("messages: ",response);
         resolve(response.data.results)
       })
       .catch((error) => {
@@ -14,10 +15,12 @@ export default {
       })
     })
   },
-  postMessage: (message) => {
+  postMessage: (message, user, location) => {
     return new Promise((resolve, reject) => {
       axios.post('/api/message', {
-        message: message
+        message,
+        user,
+        location,
       })
       .then((response) => {
         console.log("POSTED!")

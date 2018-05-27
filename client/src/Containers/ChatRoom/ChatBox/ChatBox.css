@@ -1,12 +1,6 @@
-/* .ChatBox {
-  margin-top: 20px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 88vh;
+.ChatBox {
   z-index: 1000;
-} */
+}
 
 
 .Window {
@@ -25,16 +19,7 @@
   box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
-.WindowHeader {
-  border-radius: 4px 4px 0 0;
-  width: 100%;
-  color: white;
-  padding: 10px;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: #999;
-  background-color: #f46242;
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
-}
+
 
 .ChatControls {
   height: 135px;

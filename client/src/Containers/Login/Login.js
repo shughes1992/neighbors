@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
 import Button from '../../Components/UI/Button/Button';
+import WindowHeader from '../../Components/UI/WindowHeader/WindowHeader';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 // import * as actionTypes from '../../store/actions'
 import * as actionCreators from '../../store/actions/loginActions';
+
 
 class Login extends Component {
   componentDidUpdate(prevProps) {
@@ -18,8 +20,8 @@ class Login extends Component {
   render() {
     return (
       <div className={classes.LoginForm}>
+        <WindowHeader position="center">Login/SignUp</WindowHeader>
         <form className={classes.Form}>
-          <h3>Log in</h3>
           <input
             type="text"
             id="username"

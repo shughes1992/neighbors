@@ -1,16 +1,19 @@
+
+
 .Login {
 }
 .LoginForm {
-  background-image: url('/assets/images/neigbors-2.jpg');
-  margin-top: 40px;
+
+  margin-top: 80px;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    height: 600px;
+    height: 300px;
+    background-color: rgba(230, 230, 230, .7);
     width: 400px;
     border-radius: 6px;
-    box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+    box-shadow: 0 24px 38px 9px rgba(0,0,0,0.34), 0 9px 46px 8px rgba(0,0,0,0.42), 0 11px 15px -7px rgba(0,0,0,0.2);
   }
 
   .Username {
