@@ -5,7 +5,7 @@ import Button from '../../Components/UI/Button/Button';
 import WindowHeader from '../../Components/UI/WindowHeader/WindowHeader';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import * as actionTypes from '../../store/actions'
+import TextInput from '../../Components/UI/TextInput/TextInput';
 import * as actionCreators from '../../store/actions/loginActions';
 
 
@@ -22,22 +22,15 @@ class Login extends Component {
       <div className={classes.LoginForm}>
         <WindowHeader position="center">Login/SignUp</WindowHeader>
         <form className={classes.Form}>
-          <input
+          <TextInput
             type="text"
-            id="username"
-            className={classes.InputField}
-            value={this.props.username}
-            placeholder="jaqueesedoe@mail.com"
-            onChange={event => (this.props.handleUsernameChange(event.target.value))}
-          />
-          <input
+            placeholder="username"
+            changeHandler={event => (this.props.handleUsernameChange(event.target.value))} />
+
+          <TextInput
             type="password"
-            id="password"
-            className={classes.InputField}
-            value={this.props.password}
-            placeholder="P@ssw0rd"
-            onChange={event => (this.props.handlePasswordChange(event.target.value))}
-          />
+            placeholder="password"
+            changeHandler={event => (this.props.handlePasswordChange(event.target.value))} />
         </form>
         <Button clicked={this.props.login}>Log In</Button>
       </div>
