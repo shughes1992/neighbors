@@ -8,9 +8,7 @@ require('dotenv').config();
 export default {
   // this isn't working becuase of cross-origin requests
   getNeighborhood: (lat, lng) => {
-    console.log("making api requies")
     return new Promise((resolve, reject) => {
-      console.log("hitting google places api")
       axios.get(corsApiUrl + baseUrl, {
         params: {
           location: [lat, lng].join(","),
@@ -20,25 +18,32 @@ export default {
         }
       })
       .then((response) => {
-        console.log('success')
-        console.log(response);
         const data = response.data.results;
         const name = data[data.length - 1].name;
-        axios.get('/api/phillyHood', {
-          params: {
-            name,
-          }
-        })
-        .then(response => {
-          console.log("HOODS: ",response.data.results)
-        })
+        console.log(name)
+        resolve(name)
       })
       .catch((error) => {
-        console.log("fail")
-        console.log(error);
         reject(error)
       });
     });
   },
+
+  getHoodCoords: (name) => {
+    return new Promise((resolve, reject) => {
+      axios.get('/api/phillyHood', {
+        params: {
+          name,
+        }
+      })
+      .then(response => {
+        resolve(response.data.results)
+      })
+      .catch(err => {
+        reject(err)
+      })
+
+    })
+  }
 
 };
