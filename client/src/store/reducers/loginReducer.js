@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/loginActions'
 
 const initialState = {
   username: '',
+  userId: '',
   password: '',
   location: '',
   lat: '',
@@ -25,6 +26,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         location: action.neighborhood,
+        locationId: action.locationId,
         lat: action.lat,
         lng: action.lng
       }
@@ -32,7 +34,8 @@ const reducer = (state = initialState, action) => {
       // login authentication
       return {
         ...state,
-        loggedIn: true
+        loggedIn: true,
+        userId: action.userId
       }
     default:
       return state

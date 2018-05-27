@@ -17,6 +17,8 @@ class Layout extends Component {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     // dispatch action
+    console.log("lat: ", lat)
+    console.log("lng: ", lng)
     this.props.submitLocation(lat, lng)
   }
 

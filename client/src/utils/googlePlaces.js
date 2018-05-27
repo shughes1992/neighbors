@@ -29,7 +29,7 @@ export default {
             console.log("NOT POSTING")
             // this location already exists
             console.log(response.data.results)
-            return resolve(response.data.results.neighborhood);
+            return resolve(response.data.results);
           }
           else{
             axios.post('/api/location', {neighborhood: name})
