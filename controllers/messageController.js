@@ -6,7 +6,7 @@ module.exports = {
       console.log("in message controller")
       db.Message.findAll({
         where: locationId,
-        order: [['createdAt', 'DESC']],
+        order: [['createdAt', 'ASC']],
         include: [db.User]
       })
       .then((messages, err) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import classes from './ChatBox.css';
 import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
@@ -13,9 +14,11 @@ class ChatBox extends Component {
     api.getMessages(this.props.locationId)
     .then(response => {
       console.log("chat history: ", chatHistory)
-      let chatHistory = response.map(message => (
-        {user: message.User.name, text: message.text}
-      ))
+      let chatHistory = response.map(message => {
+        // convert createdAT date to human readable date
+        let createdAt = moment(message.createdAt).format("ddd, MMM Do hh:mm a")
+        return ({user: message.User.name, text: message.text, date: createdAt});
+      })
       this.setState({
         chatHistory,
       })
@@ -35,7 +38,7 @@ class ChatBox extends Component {
       updatedChatHistory = [...this.state.chatHistory];
     }
     const newMessage = {text: this.state.message, UserId: this.props.userId, LocationId: this.props.locationId}
-    const displayMessage = {text: this.state.message, user: this.props.user}
+    const displayMessage = {text: this.state.message, user: this.props.user, date: Date.now()}
     updatedChatHistory.push(displayMessage)
     // post to db
     api.postMessage(newMessage)
@@ -53,9 +56,13 @@ class ChatBox extends Component {
       messages = this.state.chatHistory.map(message => {
         return (
           <div className={classes.Message}>
-            <span className={classes.Username}>{message.user}: </span>
-            <span className={classes.MessageText}>{message.text}</span>
+            <div className={classes.Username}>
+              {message.user}:
+              <span className={classes.MessageText}>{message.text}</span>
+            </div>
+            <div className={classes.TimeStamp}>({message.date})</div>
           </div>
+
         )
       })
     }

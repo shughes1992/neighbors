@@ -54,14 +54,24 @@
 }
 
 .Message {
-  padding: 5px;
+  padding: 10px;
   font-family: 'Raleway', cursive;
   font-size: .8em;
-}
-/* .Left {
-  align-self: flex-start;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
 }
 
-.Right {
-  align-self: flex-end;
-} */
+.MessageText {
+  font-weight: lighter;
+  padding-left: 5px;
+  font-size: .95em;
+}
+
+.TimeStamp {
+  color: #bbb;
+  font-size: .75em;
+  position: absolute;
+  padding-top: 20px;
+  right: 15px;
+}
