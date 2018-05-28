@@ -13,8 +13,6 @@ module.exports = function(sequelize, DataTypes) {
     Message.belongsTo(models.User, {
       foreignKey: 'UserId'
     });
-  };
-  Message.associate = function(models) {
     Message.belongsTo(models.Location, {
       foreignKey: 'LocationId'
     });

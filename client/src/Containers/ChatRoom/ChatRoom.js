@@ -33,6 +33,7 @@ class ChatRoom extends Component {
           activeUser={this.props.username}
           locationId={this.props.locationId}
           userId={this.props.userId}
+          user={this.props.username}
         />
       </Aux>
     )

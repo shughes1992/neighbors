@@ -10,9 +10,12 @@ class ChatBox extends Component {
   }
 
   componentDidMount() {
-    api.getMessages(this.props.location)
-    .then(chatHistory => {
+    api.getMessages(this.props.locationId)
+    .then(response => {
       console.log("chat history: ", chatHistory)
+      let chatHistory = response.map(message => (
+        {user: message.User.name, text: message.text}
+      ))
       this.setState({
         chatHistory,
       })
@@ -31,8 +34,9 @@ class ChatBox extends Component {
     if (this.state.chatHistory) {
       updatedChatHistory = [...this.state.chatHistory];
     }
-    let newMessage = {text: this.state.message, UserId: this.props.userId, LocationId: this.props.locationId}
-    updatedChatHistory.push(newMessage)
+    const newMessage = {text: this.state.message, UserId: this.props.userId, LocationId: this.props.locationId}
+    const displayMessage = {text: this.state.message, user: this.props.user}
+    updatedChatHistory.push(displayMessage)
     // post to db
     api.postMessage(newMessage)
     .then(response => {
@@ -49,7 +53,7 @@ class ChatBox extends Component {
       messages = this.state.chatHistory.map(message => {
         return (
           <div className={classes.Message}>
-            <span className={classes.Username}>{message.UserId}</span>
+            <span className={classes.Username}>{message.user}: </span>
             <span className={classes.MessageText}>{message.text}</span>
           </div>
         )
