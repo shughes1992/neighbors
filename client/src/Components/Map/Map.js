@@ -4,14 +4,16 @@ import classes from './Map.css';
 
 
 const style = {
-    width: '100%',
-    height: '40%'
+    // width: '100%',
+    // height: '40%'
   }
 
 export class MapContainer extends React.Component  {
   render() {
     return (
-      <div style={{ height: '30vh', width: '100%' }}>
+      <div className="Container">
+      <div className="wrapper">
+    
         <Map
           google={this.props.google}
           style={style}
@@ -28,7 +30,7 @@ export class MapContainer extends React.Component  {
 
       </Map>
 
-
+          </div>
       </div>
     );
   }

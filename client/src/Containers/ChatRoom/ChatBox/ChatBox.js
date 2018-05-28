@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './ChatBox.css';
 import Login from '../../Login/Login'
-import Button from '../../../Components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
 
 class ChatBox extends Component {
@@ -51,7 +51,11 @@ class ChatBox extends Component {
     })
 
     return (
+      
       <div className={classes.ChatBox}>
+      <br />
+      <br />
+
         <div className={classes.Window}>
           {messages}
         </div>
@@ -60,7 +64,9 @@ class ChatBox extends Component {
           we can render buttons with different names by passing it different children
           additionally we can render buttons with different behavior on click by
         passing different function in the "clicked" prop */}
+        <br />
         <Button clicked={this.submitMessage}>Send</Button>
+        <br />
       </div>
     )
   }

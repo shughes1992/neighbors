@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Login.css';
 // import MapContainer from '../Components/Map/Map'
-import Button from '../../Components/UI/Button/Button';
+import Button from '../../components/UI/Button/Button';
 
 class Login extends Component {
 
@@ -53,6 +53,7 @@ class Login extends Component {
 
  render() {
     return (
+      <div className='container'>
       <div className={classes.LoginForm}>
         <form>
           <h3>Log in</h3>
@@ -60,6 +61,7 @@ class Login extends Component {
           <input type="password" id="password" className={classes.Password} value={this.state.password} placeholder="P@ssw0rd" onChange={this.handleChange}/>
           <Button clicked={this.handleSubmit}>Log In</Button>
         </form>
+      </div>
       </div>
     )
 
