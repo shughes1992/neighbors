@@ -12,6 +12,8 @@ export class MapContainer extends Component  {
         {lat: coordSet[1], lng: coordSet[0]}
       ))
     }
+    // we want to offeset the map a little bit so the outlined neighborhood
+    // fits nicely next to the chatbox
     const offSetLat = this.props.lat + .004;
     const offSetLng = this.props.lng - .008;
     return (
@@ -32,7 +34,7 @@ export class MapContainer extends Component  {
             path={pathCoords}
             strokeColor='#F46242'
             strokeOpacity={0.8}
-            strokeWeight={3}
+            strokeWeight={6}
           />
 
         </Map>
