@@ -1,8 +1,18 @@
-.main {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    align-content: center;
-    border: 3px solid #e20606;
+.Main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  box-sizing: border-box;
+  z-index: -2;
+  height: 90vh;
+}
 
+.BackDrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1000;
 }

@@ -7,15 +7,14 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     text: DataTypes.STRING,
-    user: DataTypes.STRING,
-    location: DataTypes.STRING,
   });
 
   Message.associate = function(models) {
     Message.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: 'UserId'
+    });
+    Message.belongsTo(models.Location, {
+      foreignKey: 'LocationId'
     });
   };
   return Message;

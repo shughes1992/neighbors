@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import classes from './ChatBox.css';
-import Login from '../../Login/Login'
-import Button from '../../../components/UI/Button/Button';
+import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
-
+import Avatar from '../../../components/Avatar/Avatar';
+import WindowHeader from '../../../Components/UI/WindowHeader/WindowHeader';
 class ChatBox extends Component {
   state = {
     chatHistory: [],
     message: '',
-    activeUser: Login.activeUser
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props)
-    this.setState({
-      chatHistory: nextProps.chatHistory
+  componentDidMount() {
+    api.getMessages(this.props.locationId)
+    .then(response => {
+      console.log("chat history: ", chatHistory)
+      let chatHistory = response.map(message => {
+        // convert createdAT date to human readable date
+        let createdAt = moment(message.createdAt).format("ddd, MMM Do hh:mm a")
+        return ({user: message.User.name, text: message.text, date: createdAt});
+      })
+      this.setState({
+        chatHistory,
+      })
     })
   }
 
@@ -26,9 +34,13 @@ class ChatBox extends Component {
   }
 
   submitMessage = () => {
-    let updatedChatHistory = [...this.state.chatHistory];
-    let newMessage = {user: this.props.activeUser, text: this.state.message}
-    updatedChatHistory.push(newMessage)
+    let updatedChatHistory = [];
+    if (this.state.chatHistory) {
+      updatedChatHistory = [...this.state.chatHistory];
+    }
+    const newMessage = {text: this.state.message, UserId: this.props.userId, LocationId: this.props.locationId}
+    const displayMessage = {text: this.state.message, user: this.props.user, date: Date.now()}
+    updatedChatHistory.push(displayMessage)
     // post to db
     api.postMessage(newMessage)
     .then(response => {
@@ -40,16 +52,19 @@ class ChatBox extends Component {
   }
 
   render() {
-    console.log(this.state.chatHistory)
-    // use the map method to turn each message in the chat history into a jsx element
-    const messages = this.state.chatHistory.map((chatItem, index) => {
-      return (
-        <div key={index}>
-          <div>{chatItem.user}: <span>{chatItem.text}</span></div>
-        </div>
-      )
-    })
+    let messages = []
+    if (this.state.chatHistory) {
+      messages = this.state.chatHistory.map(message => {
+        return (
+          <div className={classes.Message}>
+            <Avatar context="chat" username={message.user}/>
+            <span className={classes.MessageText}>{message.text}</span>
+            <div className={classes.TimeStamp}>({message.date})</div>
+          </div>
 
+        )
+      })
+    }
     return (
       
       <div className={classes.ChatBox}>
@@ -57,20 +72,18 @@ class ChatBox extends Component {
       <br />
 
         <div className={classes.Window}>
+          <WindowHeader >{this.props.location} Chat</WindowHeader>
           {messages}
         </div>
-        <input className={classes.ChatInput} value={this.state.message} onChange={this.updateMessage}/>
-        {/* the inner html here ("send") is passed to button as props.children
-          we can render buttons with different names by passing it different children
-          additionally we can render buttons with different behavior on click by
-        passing different function in the "clicked" prop */}
-        <br />
-        <Button clicked={this.submitMessage}>Send</Button>
-        <br />
+        <div id="chatControls" className={classes.ChatControls}>
+          <input className={classes.ChatInput} value={this.state.message} onChange={this.updateMessage}/>
+          <Button clicked={this.submitMessage}>Send</Button>
+        </div>
       </div>
     )
   }
 
 }
+
 
 export default ChatBox;

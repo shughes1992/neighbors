@@ -9,12 +9,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING
-    }
+    },
+    password: {
+      type: DataTypes.STRING
+    },
   });
 
   User.associate = function(models) {
     // Associating User with message
-    // When an User is deleted, also delete any associated Posts
+    // When an User is deleted, also delete any associated messages
     User.hasMany(models.Message, {
       onDelete: "cascade"
     });

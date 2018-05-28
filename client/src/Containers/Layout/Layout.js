@@ -1,53 +1,29 @@
 import React, { Component } from 'react';
 import Login from '../Login/Login';
 import ChatRoom from '../ChatRoom/ChatRoom';
-import NavBar from '../../components/Navigation/Navigation';
-import api from '../../utils/apiRequests';
-import { Route } from 'react-router'
-import { Link } from 'react-router-dom';
-import classes from './layout.css'
-
+import NavBar from '../../Components/Navigation/Navigation';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/loginActions'
+import classes from './layout.css';
+import backgroundImage from './assets/images/neighbors-2.jpg';
 class Layout extends Component {
-  state = {
-    name: "Neigbors",
-    authenticated: false,
-    chatHistory: [],
-    lat: 0,
-    lng: 0,
-    activeUser: 'user1'
-  }
-
-  componentWillMount(){
-    api.getMessages()
-    .then(response => {
-      this.setState({
-        chatHistory: response
-      })
-    })
-  }
-
-  login = (event) => {
-    console.log(event.target.id)
-    this.setState({
-      authenticated: true
-    })
+  // get the user's location as soon as they go to the homepage
+  componentWillMount() {
+    this.getGeoCoords();
   }
 
   showLocation = (position) => {
-
-    console.log("in show location")
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    this.setState({
-      lat: latitude,
-      lng: longitude
-    })
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    // dispatch action
+    console.log("lat: ", lat)
+    console.log("lng: ", lng)
+    this.props.submitLocation(lat, lng)
   }
 
   getGeoCoords = () => {
     if(navigator.geolocation) {
-
-       // timeout at 60000 milliseconds (60 seconds)
        var options = {timeout:60000};
        navigator.geolocation.getCurrentPosition(this.showLocation, this.errorHandler, options);
     } else {
@@ -55,21 +31,42 @@ class Layout extends Component {
     }
   }
   render() {
+    let username;
+    if (this.props.loggedIn) {
+      username = this.props.username
+    }
+    let image = backgroundImage;
+    if (this.props.history[this.props.history.length - 1] === "/chatRoom"){
+      console.log("switching to chat route")
+      image = ''
+    }
     return (
       <div>
-        <NavBar />
-
-        <main className={classes.main}>
-      
-          <Route path="/" exact render={() => <Login getGeoCoords={this.getGeoCoords}/>}/>
-          <Route path="/chatRoom" exact render = {() => (
-            <ChatRoom chatHistory={this.state.chatHistory} lat={this.state.lat} lng={this.state.lng} />
-          )}/>
-          <Link to="/chatRoom">Go to chatroom</Link>
+        <NavBar username={username}/>
+        <div className={classes.BackDrop} style={{backgroundImage: `url(${backgroundImage})`}}></div>
+        <main className={classes.Main}>
+          <Route path="/" exact component={Login}/>
+          <Route path="/chatRoom" exact component = {ChatRoom} />
         </main>
       </div>
     )
   }
 }
 
-export default Layout;
+// store
+const mapStateToProps = state => {
+  return {
+    location: state.loginReducer.location,
+    username: state.loginReducer.username,
+    loggedIn: state.loginReducer.loggedIn
+  }
+}
+
+// dispatching actions
+const mapDispatchToProps = dispatch => {
+  return {
+    submitLocation: (lat, lng) => dispatch(actionCreators.submitLocation(lat, lng))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

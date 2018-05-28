@@ -9,13 +9,17 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
     "express": "~4.15.5",
     "google-map-react": "^1.0.3",
     "google-maps-react": "^2.0.2",
     "jade": "~1.11.0",
+    "mongoose": "^5.1.2",
     "morgan": "~1.9.0",
     "mysql2": "^1.5.3",
+    "philly-hoods": "^1.0.0",
     "react-bootstrap": "^0.32.1",
+    "redux-thunk": "^2.2.0",
     "sequelize": "^4.37.8",
     "serve-favicon": "~2.4.5"
   }

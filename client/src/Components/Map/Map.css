@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -6754,3 +6755,18 @@ html {
   }
   /*# sourceMappingURL=bootstrap.css.map */
   
+=======
+.MapContainer {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.MapContainer > div {
+  z-index: -1;
+  overflow-x: hidden;
+}
+>>>>>>> 667e12985a99efd451ca2b7c71bbf824f2e4113c
