@@ -1,0 +1,14 @@
+.NavImage {
+  margin-right: 90px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.ChatImage {
+
+}
+
+.Username {
+  margin-top: 2px;
+  font-size: .8em;
+}

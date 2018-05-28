@@ -3,6 +3,7 @@ import moment from 'moment';
 import classes from './ChatBox.css';
 import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
+import Avatar from '../../../Components/Avatar/Avatar';
 import WindowHeader from '../../../Components/UI/WindowHeader/WindowHeader';
 class ChatBox extends Component {
   state = {
@@ -56,10 +57,8 @@ class ChatBox extends Component {
       messages = this.state.chatHistory.map(message => {
         return (
           <div className={classes.Message}>
-            <div className={classes.Username}>
-              {message.user}:
-              <span className={classes.MessageText}>{message.text}</span>
-            </div>
+            <Avatar context="chat" username={message.user}/>
+            <span className={classes.MessageText}>{message.text}</span>
             <div className={classes.TimeStamp}>({message.date})</div>
           </div>
 

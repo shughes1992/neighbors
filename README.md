@@ -125,7 +125,7 @@ the server and the google maps/places/geoCoder API
 1. Add event handler to chatbox to submit message on Enter keypress
 1. Set focus on input fields with ref()
 1. Encrypt password with bcrypt
-1. show timestamp in chat
+1. ~~show timestamp in chat~~
 1. Persist Redux State
 
 ## Bugs
