@@ -3,7 +3,7 @@ import moment from 'moment';
 import classes from './ChatBox.css';
 import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
-import Avatar from '../../../components/Avatar/Avatar';
+import Avatar from '../../../Components/Avatar/Avatar';
 import WindowHeader from '../../../Components/UI/WindowHeader/WindowHeader';
 class ChatBox extends Component {
   state = {

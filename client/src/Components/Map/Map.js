@@ -4,16 +4,7 @@ import classes from './Map.css';
 
 import mapStyles from './mapStyles.json';
 
-<<<<<<< HEAD
-const style = {
-    // width: '100%',
-    // height: '40%'
-  }
-
-export class MapContainer extends React.Component  {
-=======
 export class MapContainer extends Component  {
->>>>>>> 667e12985a99efd451ca2b7c71bbf824f2e4113c
   render() {
     let pathCoords;
     if (this.props.hoodCoords){
@@ -26,12 +17,6 @@ export class MapContainer extends Component  {
     const offSetLat = this.props.lat + .004;
     const offSetLng = this.props.lng - .008;
     return (
-<<<<<<< HEAD
-      <div className="Container">
-      <div className="wrapper">
-    
-=======
->>>>>>> 667e12985a99efd451ca2b7c71bbf824f2e4113c
         <Map
           id="map"
           google={this.props.google}
@@ -45,12 +30,6 @@ export class MapContainer extends Component  {
             position={{lat: this.props.lat, lng: this.props.lng}}
             name={'Current location'} />
 
-<<<<<<< HEAD
-      </Map>
-
-          </div>
-      </div>
-=======
           <Polyline
             path={pathCoords}
             strokeColor='#F46242'
@@ -59,7 +38,6 @@ export class MapContainer extends Component  {
           />
 
         </Map>
->>>>>>> 667e12985a99efd451ca2b7c71bbf824f2e4113c
     );
   }
 }
