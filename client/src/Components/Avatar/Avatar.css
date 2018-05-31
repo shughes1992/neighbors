@@ -12,3 +12,13 @@
   margin-top: 2px;
   font-size: .8em;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .NavImage {
+    margin-right: 10px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    width: 50%;
+  }
+}
