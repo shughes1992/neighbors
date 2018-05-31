@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import io from "socket.io-client";
 import moment from 'moment';
 import classes from './ChatBox.css';
 import Button from '../../../Components/UI/Button/Button';
 import api from '../../../utils/apiRequests';
 import Avatar from '../../../Components/Avatar/Avatar';
 import WindowHeader from '../../../Components/UI/WindowHeader/WindowHeader';
+require('dotenv').config();
+var PORT = process.env.PORT || 8080;
 class ChatBox extends Component {
   state = {
     chatHistory: [],
     message: '',
   }
+
+  socket = io('localhost:8080');
 
   componentDidMount() {
     api.getMessages(this.props.locationId)

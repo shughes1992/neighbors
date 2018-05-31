@@ -1,4 +1,7 @@
 var express = require('express');
+// socket.io
+var socket = require('socket.io');
+// =========
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -14,12 +17,24 @@ var app = express();
 require('dotenv').config();
 var PORT = process.env.PORT || 8080;
 
-// connect to mySql db
-db.sequelize.sync({ force: false }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+// // connect to mySql db
+// db.sequelize.sync({ force: false }).then(function() {
+//   app.listen(PORT, function() {
+//     console.log("App listening on PORT " + PORT);
+//   });
+// });
+
+// socket.io
+server = app.listen(8080, function(){
+  console.log('server is running on port 5000')
 });
+
+io = socket(server);
+
+io.on('connection', (socket) => {
+  console.log(socket.id);
+  });
+// end socket.io
 
 // connect to mongoDb for philly-hoods data
 // their api was down so I copied their database
